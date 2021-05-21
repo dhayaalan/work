@@ -1,8 +1,8 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../util/database");
-class Admin extends Model {}
+class User extends Model {}
 
-Admin.init(
+User.init(
   {
     id: {
       type: DataTypes.BIGINT.UNSIGNED,
@@ -11,38 +11,37 @@ Admin.init(
       allowNull: false,
     },
     firstname: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     lastname: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     emailId: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     password: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
-    type:
-      {
-        type = DataTypes.ENUM('user', 'admin'),
-        defaultValue:"user",
-        allowNull: false
-      },
-      is_admin: {
-        type: DataTypes.VIRTUAL,
-        get() {
-          if (this.type == "admin") return true;
-          else return false;
-        },
-      }, 
+    confirmpassword: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    type: {
+      type: DataTypes.ENUM("user", "admin"),
+      defaultValue: "user",
+      allowNull: false,
+    },
+    islogged: {
+      type: DataTypes.BOOLEAN,
+    },
   },
   {
     sequelize: sequelize,
   }
 );
 
-module.exports = Admin;
+module.exports = User;

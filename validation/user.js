@@ -36,5 +36,14 @@ const password = [
     .isLength({ min: 2, max: 8 })
     .withMessage(" password min of 2 character and max of 8 character:"),
 ];
+const confirmpassword = [
+  body("confirmpassword")
+    .not()
+    .trim()
+    .isEmpty()
+    .isAlphanumeric()
+    .isLength({ min: 2, max: 8 })
+    .withMessage("password min of 2 character and max of 8 chracter:"),
+];
 
-module.exports = { firstname, lastname, emailId, password };
+module.exports = { firstname, lastname, emailId, password ,confirmpassword};

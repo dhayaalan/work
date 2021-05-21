@@ -2,31 +2,30 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const db = require("mysql2");
 const expressValid = require("express-validator");
-
-const adminRouter = require("./router/admin");
-const loginRouter = require("./router/login");
+const path = require("path");
+const loginRouter = require("./router/register");
+const courseRouter = require("./router/courselist");
 const seq = require("./util/database");
-const course = require("./validation/course");
-const { collage } = require("./controller/college");
-const college = require("./validation/college");
-const price = require("./validation/price");
+const Course = require("./models/course");
+const Collage = require("./models/collage");
 
 const app = express();
 
-app.use(bodyParser.json());
+app.set("view engine", "ejs");
+app.set("views", "views");
 
-app.use("/admin/", adminRouter);
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use("/admin", loginRouter);
+app.use("/admin", courseRouter);
 
-course.belongsto(college);
-college.hasMany(course);
-
-course.belongsto(price);
-price.hasOne(course);
+Course.belongsTo(Collage);
+Collage.hasMany(Course);
 
 seq
-  .sync({ force: false })
-  .then((result) => app.listen(3000))
+  .sync({ force: false, alter: true })
+  .then((result) => app.listen(3000, () => console.log("App Listening")))
   .catch((err) => {
     console.log(err);
   });

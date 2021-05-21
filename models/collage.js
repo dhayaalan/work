@@ -1,8 +1,8 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../util/database");
 
-class College extends Model {}
-College.init(
+class Collage extends Model {}
+Collage.init(
   {
     name: {
       type: DataTypes.STRING,
@@ -14,4 +14,4 @@ College.init(
   }
 );
 
-module.exports = College;
+module.exports = Collage;

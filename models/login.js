@@ -5,11 +5,11 @@ class Login extends Model {}
 Login.init(
   {
     emailId: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     password: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
     },
   },

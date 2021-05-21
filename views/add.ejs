@@ -1,0 +1,42 @@
+<html>
+
+<head>
+  <style>
+    .registerbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 25%;
+      opacity: 0.9;
+    }
+    .registerbtn:hover {
+       opacity: 1;
+    }
+
+  </style>
+</head>
+
+<body>
+  <center>
+    <p>To add New College</p>
+    <form action="/admin/courselist" method="POST">
+
+
+      <label for="name">Course name:</label><br>
+      <input type="text" id="coname" name="name"><br>
+
+      <label for="price">Price:</label><br>
+      <input type="value" id="fees" name="price"><br>
+
+      <button type="submit" class="registerbtn">Add collage </button>
+    </form>
+    <h2><%= message %></h2>
+
+  </center>
+
+</body>
+
+</html>

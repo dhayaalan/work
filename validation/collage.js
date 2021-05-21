@@ -1,14 +1,14 @@
 const { body } = require("express-validator"),
   { default: validator } = require("validator");
 
-const price = [
-  body("price")
+const collagename = [
+  body("name")
     .not()
     .isEmpty()
     .trim()
-    .isNumeric()
-    .isLength({ min: 2, max: 8 })
+    .isAlpha()
+    .isLength({ min: 2, max: 30 })
     .withMessage("college name is too long "),
 ];
 
-module.exports = { price };
+module.exports = { collagename };
